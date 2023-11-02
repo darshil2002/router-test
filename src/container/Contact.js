@@ -1,19 +1,13 @@
-import React from 'react'
-import { useNavigate } from "react-router-dom";
+// import React , { useEffect }from 'react'
+// import { useNavigate } from "react-router-dom";
+import Rainbow from './hoc/Rainbow';
 
-const Contact = (props) => {
-
-    const navigate = useNavigate();
-
-    console.log(props)
-    setTimeout(() => {
-        // console.log(history)
-        navigate('/support');
-      }, 2000);
+const Contact = () => {
+    
     return(
         <div>
             <p>new cont" page"</p>
         </div>
     )
 }
-export default Contact;
+export default Rainbow(Contact);

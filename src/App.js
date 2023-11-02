@@ -5,6 +5,7 @@ import Home from './container/Home';
 import React  from 'react';
 import Contact from './container/Contact';
 import Support from './container/Support';
+import Post from './container/Post';
 
 function App() {
 
@@ -14,9 +15,10 @@ function App() {
       <div className="App">
         <Navbar/>
         <Routes>
-          <Route exact path="/" element={<Home/>}/>
-          <Route path="/contact" element={<Contact/>}/>
-          <Route path="/support" element={<Support/>}/>
+        <Route path="/contact" element={<Contact/>}/>
+        <Route path="/support" element={<Support/>}/>
+        <Route  path="/:post_id" element={<Post/>}/>
+        <Route exact path="/" element={<Home/>}/>
         </Routes>
       </div>
     </BrowserRouter>
