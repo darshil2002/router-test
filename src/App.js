@@ -17,7 +17,7 @@ function App() {
         <Routes>
         <Route path="/contact" element={<Contact/>}/>
         <Route path="/support" element={<Support/>}/>
-        <Route  path="/:post_id" element={<Post/>}/>
+        <Route  path="/post/:post_id" element={<Post/>}/>
         <Route exact path="/" element={<Home/>}/>
         </Routes>
       </div>
