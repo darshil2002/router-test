@@ -1,50 +1,43 @@
-import React, {Component} from "react";
+
+import React from "react";
 import { useParams } from 'react-router-dom';
-import axios from "axios";
+import { connect } from 'react-redux';
 
-class Post extends React.Component{
-    state={
-        post:null
-    }
-    componentDidMount(){
-        const {post_id}= this.props.post_id
+class Post extends React.Component {
+    render() {
+        const { posts, post_id } = this.props;
+        const post = posts.find(post => post.id === post_id);
 
-        axios.get('https://jsonplaceholder.typicode.com/posts/' + post_id).then(res=>{
-            console.log('api response is ', res.data )
-            this.setState({
-                post:res.data
-            })
-        })
-        
-    }
-    render(){
-        const post = this.state.post ? (
+        if (!post) {
+            return (
+                <div>
+                    Loader...
+                </div>
+            );
+        }
+
+        return (
             <div className="post card">
-            <div className="card-content">
-                <span className="card-title">{this.state.post.title}</span>
-                <p>{this.state.post.body}</p>
+                <div className="card-content">
+                    <span className="card-title">{post.title}</span>
+                    <p>{post.body}</p>
+                </div>
             </div>
-            </div>
-        ):(
-            <div>
-                Loader...
-            </div>
-        )
-
-        return(
-            <div>
-                {post}
-            </div>
-        )
+        );
     }
 }
 
-function AddPostParams(){
-    const post_id=useParams()
-    return(
+const PostContainer = ({ posts }) => {
+    const { post_id } = useParams();
 
-        <Post post_id={post_id}/>
-    ) 
+    return <Post posts={posts} post_id={post_id} />;
+};
+
+const mapStateToProps = (state) => {
+    return {
+        posts: state.posts,
+    };
 }
 
-export default AddPostParams
+export default connect(mapStateToProps)(PostContainer);
+
